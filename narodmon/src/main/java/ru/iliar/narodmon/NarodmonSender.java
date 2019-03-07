@@ -167,6 +167,21 @@ public class NarodmonSender implements Runnable {
 		scheduledExecutorService.scheduleWithFixedDelay(this, 0, delayValue, delayUnit);
 	}
 	
+	/**
+	 * Отложенный запуск сервиса по отправке данных. Используется, если на момент старта данные от сенсоров еще не готовы. Величина задержки равна стандартному интервалу передачи.
+	 */
+	public void delayedStart() {
+		scheduledExecutorService.scheduleWithFixedDelay(this, delayValue, delayValue, delayUnit);
+	}
+	
+	/**
+	 * Отложенный запуск сервиса по отправке данных. Используется, если на момент старта данные от сенсоров еще не готовы.
+	 * @param initialDelay величина задержки в единицах интервала передачи. 
+	 */
+	public void delayedStart(long initialDelay) {
+		scheduledExecutorService.scheduleWithFixedDelay(this, initialDelay, delayValue, delayUnit);
+	}
+	
 	/** 
 	 * Остановка сервиса по отправке данных
 	 */
